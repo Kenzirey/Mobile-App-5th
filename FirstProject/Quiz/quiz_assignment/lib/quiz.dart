@@ -19,14 +19,20 @@ class _QuizState extends State<Quiz> {
     });
   }
 
+  void returnToStartScreen() {
+    setState(() {
+      activeScreen = 'start-screen'; // Reset to the start screen
+    });
+  }
+
 
   @override
   Widget build(context) {
     Widget screenWidget = StartScreen(switchScreen);
 
   if (activeScreen == 'questions-screen') {
-    screenWidget = const QuestionsScreen();
-  }
+      screenWidget = QuestionsScreen(returnToStartScreen); // Pass the callback
+    }
 
     return MaterialApp(
       home: Scaffold(
