@@ -5,8 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_assignment/system_buttons.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen(this.goToStartScreen, {super.key});
-  final VoidCallback goToStartScreen;
+  const QuestionsScreen({super.key});
 
   @override
   State<QuestionsScreen> createState() {
@@ -65,12 +64,12 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 30),  // This can be adjusted for optimal spacing
+            const SizedBox(height: 30),  // This can be adjusted for optimal spacing
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SystemButton('Restart Quiz', restartQuiz),
-                SystemButton('Main Menu', widget.goToStartScreen),
+                SystemButton('Main Menu',(){}),
               ],
             ),
           ],
