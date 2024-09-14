@@ -5,8 +5,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_assignment/system_buttons.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen(this.returnToStart, {super.key});
-  final VoidCallback returnToStart;
+  const QuestionsScreen({super.key, required this.onSelectedAnswer});
+  //final VoidCallback returnToStart;
+
+  //naming scheme "on"-something is used when it expects a function.
+  final void Function(String answer) onSelectedAnswer;
 
   @override
   State<QuestionsScreen> createState() {
@@ -17,7 +20,8 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentQuestionIndex = 0;
 
-  void questionAnswered() {
+  void questionAnswered(String selectedAnswer) {
+    widget.onSelectedAnswer(selectedAnswer);
     if (currentQuestionIndex < questions.length - 1) {
       setState(() {
         currentQuestionIndex++;
@@ -52,25 +56,29 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                   Text(
                     currentQuestion.text,
                     style: GoogleFonts.roboto(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold
-                    ),
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 30),
                   ...currentQuestion.getShuffled().map((item) {
-                    return AnswerButton(item, questionAnswered);
+                    return AnswerButton(item, () {
+                      questionAnswered(item);
+                    });
                   }),
                 ],
               ),
             ),
-            const SizedBox(height: 30),  // This can be adjusted for optimal spacing
+            const SizedBox(
+                height: 30), // This can be adjusted for optimal spacing
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SystemButton('Restart Quiz', restartQuiz),
-                SystemButton('Main Menu', widget.returnToStart),
+
+                //Todo: redo the main menu button.
+                //SystemButton('Main Menu', widget.returnToStart),
               ],
             ),
           ],
