@@ -75,7 +75,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SystemButton('Restart Quiz', restartQuiz),
+                SystemButton(onPressed: restartQuiz, text: 'Restart',),
 
                 //Todo: redo the main menu button.
                 //SystemButton('Main Menu', widget.returnToStart),
