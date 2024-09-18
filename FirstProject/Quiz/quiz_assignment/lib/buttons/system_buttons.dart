@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// System related buttons that are not for choosing answers in the quiz.
 class SystemButton extends StatelessWidget {
   const SystemButton({required this.onPressed, required this.text, super.key});
   final void Function() onPressed;

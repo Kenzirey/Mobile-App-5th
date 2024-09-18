@@ -14,7 +14,7 @@ const questions = [
     'What is the smallest country in the world?',
     ['Vatican City', 'Monaco', 'Nauru', 'San Marino'],
   ),
-  /* QuizQuestion(
+  QuizQuestion(
     'What is the biggest country in the world, in terms of land mass?',
     ['Russia', 'USA', 'China', 'Australia'],
   ),
@@ -66,5 +66,5 @@ const questions = [
       'Blocks',
       'Functions',
     ],
-  ), */
+  ),
 ];

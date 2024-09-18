@@ -18,7 +18,7 @@ class StartScreen extends StatelessWidget {
           ),
           const SizedBox(height: 40),
            Text(
-            'Learn Flutter the Boring Way',
+            'Learn Flutter the Udemy Way',
             style: GoogleFonts.roboto(
               color: Colors.white,
               fontSize: 24,
@@ -32,7 +32,7 @@ class StartScreen extends StatelessWidget {
             ),
             icon: const Icon(Icons.arrow_right_alt),
             label: Text('Start Learning',
-            style: GoogleFonts.roboto(color: Colors.white, fontSize: 24)),
+            style: GoogleFonts.roboto(color: Colors.white, fontSize: 24),),
           )
         ],
       ),

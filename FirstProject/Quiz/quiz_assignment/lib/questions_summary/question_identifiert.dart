@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+/// A help widget that displays an identifier for each question.
+///
+/// Green if question is correct, red if it's incorrect.
+///
+/// Used within QuestSummary.
 class QuestionIdentifier extends StatelessWidget {
   const QuestionIdentifier(this.index, this.isCorrect, {super.key});
 
@@ -8,7 +13,8 @@ class QuestionIdentifier extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //To start from question 1 instead 0, as index initially starts from 0.
+    // To start from question 1 instead 0, as index initially starts from 0.
+    // For human readability, as most who are not programmers will be used to start from 1.
     final questionNumber = index + 1;
 
     return Container(

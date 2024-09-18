@@ -4,6 +4,14 @@ import 'package:quiz_assignment/buttons/system_buttons.dart';
 import 'package:quiz_assignment/data/questions.dart';
 import 'package:quiz_assignment/questions_summary/questions_summary.dart';
 
+/// A screen that shows the results of the quiz (if enough answers were correct).
+///
+/// It displays:
+/// - Total number of correct answers out of total amount of available answers.
+/// - chosen answer by user and the correct answer.
+/// - A button on the bottom to restart the quiz.
+///
+/// Passed to the widget via [chosenAnswers], which holds user's chosen answers.
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen(
       {super.key, required this.chosenAnswers, required this.onRestart});
@@ -11,6 +19,11 @@ class ResultsScreen extends StatelessWidget {
   final List<String> chosenAnswers;
   final void Function() onRestart;
 
+  /// Generates a summary of the quiz results.
+  ///
+  /// - 'question_index' is the index of each question.
+  /// - 'question' the question text.
+  /// - 'correct_answer' the correct answer of the question, it is always the first answer.
   List<Map<String, Object>> getQuizSummary() {
     final List<Map<String, Object>> summary = [];
 
@@ -31,9 +44,11 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final summary = getQuizSummary();
     final numOfQuestions = questions.length;
     final numOfCorrectQuestions = summary.where((data) {
+
       return data['user_answer'] == data['correct_answer'];
     }).length;
 
@@ -45,7 +60,7 @@ class ResultsScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'You have answered $numOfCorrectQuestions correctly, out of $numOfQuestions total questions',
+              'You have answered $numOfCorrectQuestions correctly, out of $numOfQuestions total questions, I knew you could do it 👍',
               style: GoogleFonts.roboto(
                   color: Colors.white,
                   fontSize: 22,
@@ -61,24 +76,7 @@ class ResultsScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            SystemButton(onPressed: onRestart,
-            text: 'Restart'
-            ),
-            /* TextButton.icon(
-              onPressed: onRestart,
-              icon: const Icon(Icons.refresh_outlined),
-              label: const Text(
-                'Restart Quiz',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-              style: TextButton.styleFrom(
-                shadowColor: const Color.fromARGB(
-                    79, 0, 0, 0), // Shadow color for contrast
-                elevation: 0.5, // Subtle shadow effect
-              ),
-            ), */
+            SystemButton(onPressed: onRestart, text: 'Restart'),
           ],
         ),
       ),
