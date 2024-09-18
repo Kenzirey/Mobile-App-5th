@@ -38,6 +38,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     }
   }
 
+  /// Restarts the quiz to the start, i.e, first question.
   void restartQuiz() {
     setState(() {
       currentQuestionIndex = 0;
