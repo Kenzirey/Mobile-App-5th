@@ -1,4 +1,4 @@
-# quiz_assignment
+# If you have less than 2 correct answers, you get a surprise
 
 App Architecture:
 
