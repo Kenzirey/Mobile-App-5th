@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// The button used for picking answers for the questions in the quiz.
 class AnswerButton extends StatelessWidget {
   const AnswerButton(this.answer, this.onPressed, {super.key});
 

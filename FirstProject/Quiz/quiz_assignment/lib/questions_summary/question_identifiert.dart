@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 ///
 /// Green if question is correct, red if it's incorrect.
 ///
-/// Used within QuestSummary.
+/// Used within SummaryItem.
 class QuestionIdentifier extends StatelessWidget {
   const QuestionIdentifier(this.index, this.isCorrect, {super.key});
 

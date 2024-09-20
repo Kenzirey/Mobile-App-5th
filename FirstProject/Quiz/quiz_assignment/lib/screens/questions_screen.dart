@@ -71,6 +71,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                   ),
                   const SizedBox(height: 30),
                   ///... means multiple AnswerButton widgets in a list of widgets.
+                  ///https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
                   ...currentQuestion.getShuffled().map(
                     (item) {
                       return AnswerButton(
