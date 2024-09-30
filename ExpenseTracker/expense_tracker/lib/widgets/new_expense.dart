@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:expense_tracker/model/expense.dart';
 
 class NewExpense extends StatefulWidget {
-  const NewExpense({super.key});
+  const NewExpense({super.key, required this.onAddExpense});
+
+  final void Function(Expense expense) onAddExpense;
+
   @override
   State<NewExpense> createState() {
     return _NewExpenseState();
@@ -37,13 +40,38 @@ class _NewExpenseState extends State<NewExpense> {
 
   /// Submits expense data from the user, if input values are valid.
   void _submitExpense() {
-
     final enteredAmount = double.tryParse(_amountController.text);
     final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
 
-    if (_titleController.text.trim().isEmpty || amountIsInvalid || _selectedDate == null) {
-      // error
+    if (_titleController.text.trim().isEmpty ||
+        amountIsInvalid ||
+        _selectedDate == null) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Sigve Was here'),
+          content: const Text('Make sure to input valid stuff WIP'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: const Text('Ok'),
+            )
+          ],
+        ),
+      );
+      return;
     }
+
+    widget.onAddExpense(
+      Expense(
+          title: _titleController.text,
+          amount: enteredAmount,
+          date: _selectedDate!,
+          category: _selectedCategory),
+    );
+    Navigator.pop(context);
   }
 
   /// similar to init, build etc, this is part of StatefulWidget.
@@ -58,7 +86,7 @@ class _NewExpenseState extends State<NewExpense> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
       child: Column(
         children: [
           TextField(
@@ -102,7 +130,7 @@ class _NewExpenseState extends State<NewExpense> {
               ),
             ],
           ),
-          const SizedBox(height:14),
+          const SizedBox(height: 14),
           Row(
             children: [
               // Use .map to transform it from one type of value to another.
@@ -123,9 +151,9 @@ class _NewExpenseState extends State<NewExpense> {
                   if (value == null) {
                     return;
                   }
-                 setState(() {
-                   _selectedCategory = value;
-                 });
+                  setState(() {
+                    _selectedCategory = value;
+                  });
                 },
               ),
               const Spacer(),
@@ -137,8 +165,7 @@ class _NewExpenseState extends State<NewExpense> {
                 child: const Text('Cancel'),
               ),
               ElevatedButton(
-                  onPressed: _submitExpense,
-                  child: const Text('Save'))
+                  onPressed: _submitExpense, child: const Text('Save'))
             ],
           ),
         ],
